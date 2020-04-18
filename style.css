@@ -186,6 +186,19 @@
     transition: all 0.3s ease-out
 }
 
+.toggle-read {
+    background-color: lightseagreen;
+    border: none;
+    color: white;
+    border-radius: 49%;
+    padding: 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
 
 #message{
     color: red;

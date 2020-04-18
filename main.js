@@ -1,8 +1,7 @@
-let myLibrary = [
-];
+let myLibrary = [];
 
 function Book(thumbnail, title, author, pages, read) {
-    this.thumbnail = thumbnail !=  "" ? thumbnail : 'https://via.placeholder.com/150';
+    this.thumbnail = thumbnail != "" ? thumbnail : 'https://via.placeholder.com/150';
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -12,7 +11,10 @@ function Book(thumbnail, title, author, pages, read) {
         return `${this.title}, ${this.author}, ${this.pages}, ${this.read}`;
     }
 }
-
+Book.prototype.toggleRead = function () {
+    this.read = this.read == 0 ? 1 : 0;
+    render();
+}
 function addBookToLibrary(e) {
     e.preventDefault();
     const inputs = document.getElementById("bookForm").elements;
@@ -28,8 +30,17 @@ function addBookToLibrary(e) {
     } else {
         const message = document.getElementById("message");
         message.innerHTML = "Please Enter all missing fields"
-       setTimeout(() => message.innerHTML = " ", 3000);
+        setTimeout(() => message.innerHTML = " ", 3000);
     }
+}
+function toggleReadHandler() {
+    const id = document.getElementById('remove').dataset.id;
+    myLibrary[id].toggleRead();
+}
+function removeBook() {
+    const id = document.getElementById('remove').dataset.id;
+    myLibrary.splice(id);
+    render();
 }
 
 function render() {
@@ -49,10 +60,11 @@ function render() {
             </div>
             <div class="status">
                 <div class="toggle-status">
+                    <a id="toggle-read" data-id="${index}" onClick="toggleReadHandler()" class="toggle-read"> toggle </a>
                     Status : ${book.read ? 'Read' : 'Not Read Yet'}
                 </div>
                 <div class="remove-book">
-                    <button class="remove-button">Remove</button>
+                    <a class="remove-button" id="remove" data-id="${index}" onClick="removeBook()">Remove</a>
                 </div>
             </div>
         </div>`
@@ -64,4 +76,4 @@ function render() {
 }
 
 render();
-document.getElementById('submit').addEventListener('click', addBookToLibrary)
+document.getElementById('submit').addEventListener('click', addBookToLibrary);
