@@ -23,21 +23,22 @@
                 <h2>Add a book</h2>
                 <a class="close" href="#">&times;</a>
                 <div class="content">
-                    <form>
+                    <form id="bookForm">
                         <fieldset class="book-form">
                             <legend>Insert in Fields</legend>
-                            <input class="input" type="text" placeholder="Thumbnail Link">
-                            <input class="input" type="text" placeholder="Enter Title here">
-                            <input class="input" type="text" placeholder="Enter Author here">
-                            <input class="input" type="number" placeholder="Total pages">
+                            <input class="input" type="text" placeholder="Thumbnail Link" name="thumbnail">
+                            <input class="input" type="text" placeholder="Enter Title here" name="title">
+                            <input class="input" type="text" placeholder="Enter Author here" name="author">
+                            <input class="input" type="number" placeholder="Total pages" name="pages">
                             <div class="check-box">
                                 <label class="check-box-container">read
-                                    <input type="radio" checked="checked" name="read" value="true">
+                                    <input type="radio" checked="checked" name="read" value="1">
                                 </label>
                                 <label class="check-box-container">not read yet
-                                    <input type="radio" name="read" value="false">
+                                    <input type="radio" name="read" value="0">
                                 </label>
                             </div>
+                            <span id="message"></span>
                             <div class="actions">
                                 <button id="submit" >Submit</button>
                                 <button type="reset" id="reset">Reset</button>

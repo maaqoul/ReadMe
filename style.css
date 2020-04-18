@@ -6,6 +6,7 @@
 .container {
     padding: 50px;
     width: 100%;
+    min-height: 100vh;
     height: 100%;
     background: lightgrey;
     display: flex;
@@ -136,16 +137,19 @@
     background: floralwhite;
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 10px;
     flex-wrap: wrap;
+}
+.main h1 {
+    margin: auto;
 }
 .main .book-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
     width: 19%;
     background-color: steelblue;
-    height: 250px;
+    height: 265px;
 }
 .main .book-card .book-card-image img {
     max-height: 150px;
@@ -169,4 +173,23 @@
     padding: 15px;
 }
 
+.remove-button {
+    background-color: orangered;
+    border: none;
+    color: white;
+    padding: 8px 17px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-out
+}
 
+
+#message{
+    color: red;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}

@@ -1,58 +1,67 @@
 let myLibrary = [
-    { thumbnail: 'https://via.placeholder.com/150', id: 1, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 2, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 3, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 4, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 1, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 2, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 3, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 4, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 1, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 2, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 3, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 4, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 1, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 2, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
-    { thumbnail: 'https://via.placeholder.com/150', id: 3, pages: '250', title: 'harry potter', author: 'hicham maaqoul', read: true },
 ];
 
-function Book(title, author, numPages, read) {
+function Book(thumbnail, title, author, pages, read) {
+    this.thumbnail = thumbnail !=  "" ? thumbnail : 'https://via.placeholder.com/150';
     this.title = title;
     this.author = author;
-    this.numPages = numPages;
+    this.pages = pages;
     this.read = read;
 
     this.info = function () {
-        return `${this.title}, ${this.author}, ${this.numPages}, ${this.read}`;
+        return `${this.title}, ${this.author}, ${this.pages}, ${this.read}`;
     }
 }
 
-function addBookToLibrary() { }
+function addBookToLibrary(e) {
+    e.preventDefault();
+    const inputs = document.getElementById("bookForm").elements;
+    const thumbnail = inputs['thumbnail'].value;
+    const title = inputs['title'].value;
+    const author = inputs['author'].value;
+    const pages = inputs['pages'].value;
+    const read = Number(inputs['read'].value);
+    if (title != "" && author != "" && pages != "") {
+        myLibrary = [...myLibrary, new Book(thumbnail, title, author, pages, read)];
+        render()
+        window.location.href = "#";
+    } else {
+        const message = document.getElementById("message");
+        message.innerHTML = "Please Enter all missing fields"
+       setTimeout(() => message.innerHTML = " ", 3000);
+    }
+}
 
 function render() {
     let cardDocument = '';
-    for(const book of myLibrary) {
-        cardDocument+= `<div class="book-card">
-        <div class="book-card-image">
-            <img src="${book.thumbnail}" alt="thumbnail">
-        </div>
-        <div class="book-card-body">
-            <h4 id="title">Title : ${book.title}</h4>
-            <p id="author">Author : ${book.author}</p>
-            <p id="pages">Pages : ${book.pages}</p>
-        </div>
-        <div class="status">
-            <div class="toggle-status">
-                status
+    if (myLibrary.length == 0) {
+        cardDocument = `<h1>No book Add yet </h1>`;
+    } else {
+        for (const [index, book] of myLibrary.entries()) {
+            cardDocument += `<div class="book-card">
+            <div class="book-card-image">
+                <img src="${book.thumbnail}" alt="thumbnail">
             </div>
-            <div class="remove-book">
-                <button class="romove-button">Remove</button>
+            <div class="book-card-body">
+                <h4 id="title">Title : ${book.title}</h4>
+                <p id="author">Author : ${book.author}</p>
+                <p id="pages">Pages : ${book.pages}</p>
             </div>
-        </div>
-    </div>`
+            <div class="status">
+                <div class="toggle-status">
+                    Status : ${book.read ? 'Read' : 'Not Read Yet'}
+                </div>
+                <div class="remove-book">
+                    <button class="remove-button">Remove</button>
+                </div>
+            </div>
+        </div>`
+        }
     }
+
     const main = document.querySelector('.main');
     main.innerHTML = cardDocument
 }
 
 render();
+document.getElementById('submit').addEventListener('click', addBookToLibrary)
