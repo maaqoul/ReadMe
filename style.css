@@ -29,7 +29,7 @@
     height: 100%;
 }
 .header .add-book .add-button {
-    background-color: #4249ad; /* Green */
+    background-color: #4249ad;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -37,6 +37,99 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.header .add-book .add-button:hover {
+    background: #9442ad;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+.popup .close:hover {
+    color: #9442ad;
+}
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+.book-form .check-box {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-evenly;
+}
+.actions {
+    padding: 20px
+}
+.actions #submit {
+    background-color: #4249ad;
+    border: none;
+    color: white;
+    padding: 8px 17px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.actions #submit:hover {
+    background: #9442ad;
+}
+.actions #reset{
+    background-color: lightgray;
+    border: none;
+    color: white;
+    padding: 8px 17px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.actions #reset:hover {
+    background-color: lightslategray;
 }
 .main {
     width: 100%;
@@ -45,7 +138,7 @@
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    flex-wrap: wrap
+    flex-wrap: wrap;
 }
 .main .book-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -67,3 +160,13 @@
     display: flex;
     justify-content: space-around;
 }
+.book-form {
+    display: flex;
+}
+.book-form .input {
+    width: 80%;
+    margin: 10px;
+    padding: 15px;
+}
+
+

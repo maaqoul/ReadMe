@@ -1,24 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Read Me</title>
 </head>
+
 <body>
     <div class="container">
         <header class="header">
             <div class="logo">
-               <h1>Read Me</h1> 
+                <h1>Read Me</h1>
             </div>
             <div class="add-book">
-                <button id="add-button" class="add-button">Add a book</button>
+                <a class="add-button" href="#form">Add a book</a>
             </div>
         </header>
+        <div id="form" class="overlay">
+            <div class="popup">
+                <h2>Add a book</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                    <form>
+                        <fieldset class="book-form">
+                            <legend>Insert in Fields</legend>
+                            <input class="input" type="text" placeholder="Thumbnail Link">
+                            <input class="input" type="text" placeholder="Enter Title here">
+                            <input class="input" type="text" placeholder="Enter Author here">
+                            <input class="input" type="number" placeholder="Total pages">
+                            <div class="check-box">
+                                <label class="check-box-container">read
+                                    <input type="radio" checked="checked" name="read" value="true">
+                                </label>
+                                <label class="check-box-container">not read yet
+                                    <input type="radio" name="read" value="false">
+                                </label>
+                            </div>
+                            <div class="actions">
+                                <button id="submit" >Submit</button>
+                                <button type="reset" id="reset">Reset</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
         <main class="main">
         </main>
     </div>
     <script src="./main.js"></script>
 </body>
+
 </html>
