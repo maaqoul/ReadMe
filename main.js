@@ -1,4 +1,4 @@
-let myLibrary = [];
+let myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
 
 function Book(thumbnail, title, author, pages, read) {
     this.thumbnail = thumbnail != "" ? thumbnail : 'https://via.placeholder.com/150';
@@ -13,6 +13,7 @@ function Book(thumbnail, title, author, pages, read) {
 }
 Book.prototype.toggleRead = function () {
     this.read = this.read == 0 ? 1 : 0;
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
     render();
 }
 function addBookToLibrary(e) {
@@ -25,6 +26,7 @@ function addBookToLibrary(e) {
     const read = Number(inputs['read'].value);
     if (title != "" && author != "" && pages != "") {
         myLibrary = [...myLibrary, new Book(thumbnail, title, author, pages, read)];
+        localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
         render()
         window.location.href = "#";
     } else {
@@ -39,7 +41,8 @@ function toggleReadHandler() {
 }
 function removeBook() {
     const id = document.getElementById('remove').dataset.id;
-    myLibrary.splice(id);
+    myLibrary.splice(id, 1);
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
     render();
 }
 
