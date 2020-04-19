@@ -11,11 +11,7 @@ function Book(thumbnail, title, author, pages, read) {
         return `${this.title}, ${this.author}, ${this.pages}, ${this.read}`;
     }
 }
-Book.prototype.toggleRead = function () {
-    this.read = this.read == 0 ? 1 : 0;
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
-    render();
-}
+
 function addBookToLibrary(e) {
     e.preventDefault();
     const inputs = document.getElementById("bookForm").elements;
@@ -37,7 +33,9 @@ function addBookToLibrary(e) {
 }
 function toggleReadHandler() {
     const id = document.getElementById('remove').dataset.id;
-    myLibrary[id].toggleRead();
+    myLibrary[id].read = myLibrary[id].read == 0 ? 1 : 0;
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+    render();
 }
 function removeBook() {
     const id = document.getElementById('remove').dataset.id;
