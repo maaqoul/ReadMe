@@ -47,7 +47,6 @@ function removeBook() {
 }
 
 function render() {
-    console.log(myLibrary)
     let cardDocument = '';
     if (myLibrary.length == 0) {
         cardDocument = `<h1>No book Add yet </h1>`;
