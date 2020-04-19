@@ -1,4 +1,6 @@
-let myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+let myLibrary = [];
+
+if (localStorage.getItem('myLibrary')) myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
 
 function Book(thumbnail, title, author, pages, read) {
     this.thumbnail = thumbnail != "" ? thumbnail : 'https://via.placeholder.com/150';
@@ -45,6 +47,7 @@ function removeBook() {
 }
 
 function render() {
+    console.log(myLibrary)
     let cardDocument = '';
     if (myLibrary.length == 0) {
         cardDocument = `<h1>No book Add yet </h1>`;
